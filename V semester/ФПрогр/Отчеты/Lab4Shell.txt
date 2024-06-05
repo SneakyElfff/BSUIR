@@ -1,0 +1,263 @@
+Last login: Sat Oct 21 22:52:16 on ttys001
+/Users/nina/spark-3.5.0-bin-hadoop3/bin/spark-shell ; exit;
+nina@Ninas-MacBook-Air ~ % /Users/nina/spark-3.5.0-bin-hadoop3/bin/spark-shell ; exit;
+23/10/21 23:03:33 WARN Utils: Your hostname, Ninas-MacBook-Air.local resolves to a loopback address: 127.0.0.1; using 192.168.0.103 instead (on interface en0)
+23/10/21 23:03:33 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+23/10/21 23:03:35 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Spark context Web UI available at http://192.168.0.103:4040
+Spark context available as 'sc' (master = local[*], app id = local-1697918615479).
+Spark session available as 'spark'.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.5.0
+      /_/
+         
+Using Scala version 2.12.18 (OpenJDK 64-Bit Server VM, Java 20.0.2)
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> 23/10/21 23:03:48 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
+spark.sparkContext.setLogLevel("ERROR")
+
+scala> val conf = new org.apache.spark.SparkConf()
+conf: org.apache.spark.SparkConf = org.apache.spark.SparkConf@47cb3171
+
+scala> val text = spark.read.textFile("/Users/nina/Library/CloudStorage/OneDrive-Personal/Документы/Uni/ФПрогр/Lab4.txt")
+text: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> val words = text.flatMap(line => line.split("\\W+"))
+words: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> val lowercaseWords = words.map(word => word.toLowerCase())
+lowercaseWords: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> val stopWords = Set("a", "an", "the", "and", "but", "or", "for", "of")
+stopWords: scala.collection.immutable.Set[String] = Set(for, but, a, or, an, of, and, the)
+
+scala> val textWithoutStopOnes = lowercaseWords.filter(word => !stopWords.contains(word))
+textWithoutStopOnes: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> val printedLyrics = text.foreach(line => println(line))
+I know it is going to be lonely,
+because everyone keeps turning me down.
+Countless new surroundings,
+cold eyes keep looking me down.
+I am still in the crowd, alien of the town.
+Yeah, they want me to give up right now.
+They are making me laugh, it is so loud,
+waking the demon that is hiding inside.
+printedLyrics: Unit = ()
+
+scala> textWithoutStopOnes.collect().foreach(println)
+i
+know
+it
+is
+going
+to
+be
+lonely
+because
+everyone
+keeps
+turning
+me
+down
+countless
+new
+surroundings
+cold
+eyes
+keep
+looking
+me
+down
+i
+am
+still
+in
+crowd
+alien
+town
+yeah
+they
+want
+me
+to
+give
+up
+right
+now
+they
+are
+making
+me
+laugh
+it
+is
+so
+loud
+waking
+demon
+that
+is
+hiding
+inside
+
+scala> val patternWithT = "t"
+patternWithT: String = t
+
+scala> val wordsContainingT = textWithoutStopOnes.filter(word => word.contains(patternWuthT))
+<console>:23: error: not found: value patternWuthT
+       val wordsContainingT = textWithoutStopOnes.filter(word => word.contains(patternWuthT))
+                                                                               ^
+
+scala> val wordsContainingT = textWithoutStopOnes.filter(word => word.contains(patternWithT))
+wordsContainingT: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> wordsContainingT.collect().foreach(println)
+it
+to
+turning
+countless
+still
+town
+they
+want
+to
+right
+they
+it
+that
+
+scala> val patternEnding = "ing$"
+patternEnding: String = ing$
+
+scala> val wordsEndingIng = textWithoutStopOnes.filter(word => word.matches(patternEnding))
+wordsEndingIng: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> wordsEndingIng.collect().foreach(println)
+
+scala> val wordsEndingInIng = textWithoutStopOnes.filter(word => word.contains(patternEnding))
+wordsEndingInIng: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> wordsEndingInIng.collect().foreach(println)
+
+scala> textWithoutStopOnes.collect().foreach(println)
+i
+know
+it
+is
+going
+to
+be
+lonely
+because
+everyone
+keeps
+turning
+me
+down
+countless
+new
+surroundings
+cold
+eyes
+keep
+looking
+me
+down
+i
+am
+still
+in
+crowd
+alien
+town
+yeah
+they
+want
+me
+to
+give
+up
+right
+now
+they
+are
+making
+me
+laugh
+it
+is
+so
+loud
+waking
+demon
+that
+is
+hiding
+inside
+
+scala> val patternEndingIng = ".*ing$"
+patternEndingIng: String = .*ing$
+
+scala> val wordsIng = textWithoutStopOnes.filter(word => word.matches(patternEndingIng))
+wordsIng: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> wordsIng.collect().foreach(println)
+going
+turning
+looking
+making
+waking
+hiding
+
+scala> val patternSecondLetterA = "^.[aA].*$"
+patternSecondLetterA: String = ^.[aA].*$
+
+scala> val wordsWithSecondA = textWithoutStopOnes.filter(word => word.matches(patternSecondLetterA))
+wordsWithSecondA: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> wordsWithSecondA.collect().foreach(println)
+want
+making
+laugh
+waking
+
+scala> val patternLastS = ".*[sS]$"
+patternLastS: String = .*[sS]$
+
+scala> val wordsEndingInS = textWithoutStopOnes.filter(word => word.matches(patternLastS))
+wordsEndingInS: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> wordsEndingInS.collect().foreach(println)
+is
+keeps
+countless
+surroundings
+eyes
+is
+is
+
+scala> val evenWordsRDD = wordsRDD.zipWithIndex().filter { case (word, index) => index % 2 == 0 }.map { case (word, index) => word }
+<console>:22: error: not found: value wordsRDD
+       val evenWordsRDD = wordsRDD.zipWithIndex().filter { case (word, index) => index % 2 == 0 }.map { case (word, index) => word }
+                          ^
+<console>:22: error: value % is not a member of Any
+       val evenWordsRDD = wordsRDD.zipWithIndex().filter { case (word, index) => index % 2 == 0 }.map { case (word, index) => word }
+                                                                                       ^
+
+scala> val everySecondWord = textWithoutStopOnes.zipWithIndex().filter { case (word, index) => index % 2 == 0 }.map { case (word, index) => word }
+<console>:23: error: value zipWithIndex is not a member of org.apache.spark.sql.Dataset[String]
+       val everySecondWord = textWithoutStopOnes.zipWithIndex().filter { case (word, index) => index % 2 == 0 }.map { case (word, index) => word }
+                                                 ^
+<console>:23: error: value % is not a member of Any
+       val everySecondWord = textWithoutStopOnes.zipWithIndex().filter { case (word, index) => index % 2 == 0 }.map { case (word, index) => word }
+                                                                                                     ^
+
+scala> 
