@@ -1,0 +1,218 @@
+autostart = False
+version = 0.8.7
+[127.0.0.1:7200]
+    workingdir = C:\Users\nina\AppData\Local\Temp
+    udp = 10001
+    [[1721]]
+        image = C:\Users\nina\GNS3\images\IOS\c1700-advipservicesk9-mz.124-15.T14.bin
+        ram = 128
+        ghostios = True
+        chassis = 1721
+    [[ROUTER R4]]
+        model = 1721
+        console = 2104
+        aux = 2504
+        cnfg = configs\R4.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0 = R5 f0
+        e1 = R6 f0
+        f0 = R7 f0
+        x = -54.0
+        y = 200.0
+        z = 1.0
+        hx = -17.5
+        hy = -34.0
+    [[ROUTER R1]]
+        model = 1721
+        console = 2101
+        aux = 2501
+        cnfg = configs\R1.cfg
+        wic0/0 = WIC-1ENET
+        e0 = R2 f0
+        f0 = R8 f0
+        x = -415.0
+        y = -350.0
+        z = 1.0
+        hx = 18.5
+        hy = -36.0
+    [[ROUTER R2]]
+        model = 1721
+        console = 2102
+        aux = 2502
+        cnfg = configs\R2.cfg
+        wic0/0 = WIC-1ENET
+        e0 = R3 f0
+        f0 = R1 e0
+        x = -307.0
+        y = -166.0
+        z = 1.0
+        hx = 18.5
+        hy = -33.0
+    [[ROUTER R3]]
+        model = 1721
+        console = 2103
+        aux = 2503
+        cnfg = configs\R3.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0 = R6 e0
+        e1 = R7 e1
+        f0 = R2 e0
+        x = -183.0
+        y = 1.0
+        z = 1.0
+        hx = 14.5
+        hy = -34.0
+[127.0.0.1:7201]
+    workingdir = C:\Users\nina\AppData\Local\Temp
+    udp = 10101
+    [[1721]]
+        image = C:\Users\nina\GNS3\images\IOS\c1700-advipservicesk9-mz.124-15.T14.bin
+        ram = 128
+        ghostios = True
+        chassis = 1721
+    [[ROUTER R5]]
+        model = 1721
+        console = 2105
+        aux = 2505
+        cnfg = configs\R5.cfg
+        f0 = R4 e0
+        x = 63.0
+        y = 384.0
+        z = 1.0
+        hx = 16.5
+        hy = -33.0
+    [[ROUTER R6]]
+        model = 1721
+        console = 2106
+        aux = 2506
+        cnfg = configs\R6.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0 = R3 e0
+        e1 = R7 e0
+        f0 = R4 e1
+        x = 33.0
+        y = 20.0
+        z = 1.0
+        hx = 11.5
+        hy = -35.0
+    [[ROUTER R7]]
+        model = 1721
+        console = 2107
+        aux = 2507
+        cnfg = configs\R7.cfg
+        wic0/0 = WIC-1ENET
+        wic0/1 = WIC-1ENET
+        e0 = R6 e1
+        e1 = R3 e1
+        f0 = R4 f0
+        x = -275.0
+        y = 161.0
+        z = 1.0
+        hx = -45.5
+        hy = 5.0
+    [[ROUTER R8]]
+        model = 1721
+        console = 2108
+        aux = 2508
+        cnfg = configs\R8.cfg
+        f0 = R1 f0
+        x = -537.0
+        y = -516.0
+        z = 1.0
+        hx = 10.5
+        hy = -34.0
+[GNS3-DATA]
+    configs = configs
+    [[NOTE 1]]
+        text = "f0"
+        x = 16.7811229374
+        y = 38.1629941367
+        interface = R8 f0
+    [[NOTE 2]]
+        text = "f0"
+        x = -33.8458782621
+        y = -25.1150134658
+        interface = R3 f0
+    [[NOTE 3]]
+        text = "e1"
+        x = 13.0611550297
+        y = 36.6762521223
+        interface = R3 e1
+    [[NOTE 4]]
+        text = "e0"
+        x = 65.8461426211
+        y = -12.4950152324
+        interface = R3 e0
+    [[NOTE 5]]
+        text = "e0"
+        x = 11.8458782621
+        y = 37.1150134658
+        interface = R2 e0
+    [[NOTE 6]]
+        text = "f0"
+        x = -27.2480227506
+        y = -27.4966313528
+        interface = R2 f0
+    [[NOTE 7]]
+        text = "f0"
+        x = -32.7811229374
+        y = -27.1629941367
+        interface = R1 f0
+    [[NOTE 8]]
+        text = "e0"
+        x = 9.24802275057
+        y = 39.4966313528
+        interface = R1 e0
+    [[NOTE 9]]
+        text = "e1"
+        x = 5.93884497032
+        y = -37.6762521223
+        interface = R7 e1
+    [[NOTE 10]]
+        text = "e0"
+        x = 60.3700436838
+        y = -37.6499225955
+        interface = R7 e0
+    [[NOTE 11]]
+        text = "f0"
+        x = 59.3913423527
+        y = 24.9514133564
+        interface = R7 f0
+    [[NOTE 12]]
+        text = "e1"
+        x = -56.3700436838
+        y = 9.64992259552
+        interface = R6 e1
+    [[NOTE 13]]
+        text = "e0"
+        x = -36.8461426211
+        y = -22.5049847676
+        interface = R6 e0
+    [[NOTE 14]]
+        text = "f0"
+        x = 20.5932535784
+        y = 40.0139581137
+        interface = R6 f0
+    [[NOTE 15]]
+        text = "f0"
+        x = -24.4631483426
+        y = -26.7540110687
+        interface = R5 f0
+    [[NOTE 16]]
+        text = "f0"
+        x = -31.3913423527
+        y = 10.0485866436
+        interface = R4 f0
+    [[NOTE 17]]
+        text = "e1"
+        x = 51.4067464216
+        y = -31.0139581137
+        interface = R4 e1
+    [[NOTE 18]]
+        text = "e0"
+        x = 12.4631483426
+        y = 37.7540110687
+        interface = R4 e0
