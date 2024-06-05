@@ -1,0 +1,216 @@
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab02 -$ make clean
+rm parent child
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab02 -$ make
+gcc -W -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -std=c11 -pedantic parent.c -o parent
+gcc -W -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -std=c11 -pedantic child.c -o child
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab02 -$ ./parent params.txt
+
+Родительский процесс стартовал...
+COLORFGBG=15;0
+COLORTERM=truecolor
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+DESKTOP_SESSION=plasma
+DISPLAY=:0
+GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/nina/.gtkrc-2.0:/home/nina/.config/gtkrc-2.0
+GTK_MODULES=canberra-gtk-module
+GTK_RC_FILES=/etc/gtk/gtkrc:/home/nina/.gtkrc:/home/nina/.config/gtkrc
+HOME=/home/nina
+INVOCATION_ID=a8a5056d7f994ac0b1fa9ace624fab5f
+JOURNAL_STREAM=8:3729
+KDE_APPLICATIONS_AS_SCOPE=1
+KDE_FULL_SESSION=true
+KDE_SESSION_UID=1000
+KDE_SESSION_VERSION=5
+KONSOLE_DBUS_SERVICE=:1.87
+KONSOLE_DBUS_SESSION=/Sessions/1
+KONSOLE_DBUS_WINDOW=/Windows/1
+KONSOLE_VERSION=220803
+LANG=ru_RU.UTF-8
+LANGUAGE=
+LC_ADDRESS=ru_RU.UTF-8
+LC_IDENTIFICATION=ru_RU.UTF-8
+LC_MEASUREMENT=ru_RU.UTF-8
+LC_MONETARY=ru_RU.UTF-8
+LC_NAME=ru_RU.UTF-8
+LC_NUMERIC=ru_RU.UTF-8
+LC_PAPER=ru_RU.UTF-8
+LC_TELEPHONE=ru_RU.UTF-8
+LC_TIME=ru_RU.UTF-8
+LOGNAME=nina
+MAIL=/var/spool/mail/nina
+MANAGERPID=567
+MOTD_SHOWN=pam
+OLDPWD=/home/nina
+PAM_KWALLET5_LOGIN=/run/user/1000/kwallet5.socket
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+PROFILEHOME=
+PWD=/home/nina/Документы/OSSP/Labs/Альхимович/Lab02
+QT_AUTO_SCREEN_SCALE_FACTOR=0
+QT_SCREEN_SCALE_FACTORS=None-1=1.5;
+SESSION_MANAGER=local/Nina-Macbook-Air:@/tmp/.ICE-unix/674,unix/Nina-Macbook-Air:/tmp/.ICE-unix/674
+SHELL=/bin/zsh
+SHELL_SESSION_ID=a5653472c7294567a884d6d537418c5b
+SHLVL=1
+SYSTEMD_EXEC_PID=760
+TERM=xterm-256color
+USER=nina
+WINDOWID=106954763
+XAUTHORITY=/home/nina/.Xauthority
+XCURSOR_SIZE=24
+XCURSOR_THEME=breeze_cursors
+XDG_CONFIG_DIRS=/home/nina/.config/kdedefaults:/etc/xdg
+XDG_CURRENT_DESKTOP=KDE
+XDG_RUNTIME_DIR=/run/user/1000
+XDG_SEAT=seat0
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+XDG_SESSION_CLASS=user
+XDG_SESSION_DESKTOP=KDE
+XDG_SESSION_ID=2
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session1
+XDG_SESSION_TYPE=x11
+XDG_VTNR=1
+_=/home/nina/Ѓ�оку�менту�/OSSP/Labs/Ѓ�лу�у�имовиу�/Lab02/./parent
+
+информация о расположении: +-используя getenv()
+                           *-сканируя массив параметров среды
+                           &-сканируя массив параметров, указанный в environ
+                           q-окончить
++
+
+Дочерний процесс child_0 стартовал
+Идентификатор родительского процесса: 3539
+Идентификатор дочернего процесса: 3540
+
+/bin/zsh
+/home/nina
+Параметр HOSTNAME не найден
+nina
+ru_RU.UTF-8
+xterm-256color
+nina
+Параметр LC_COLLATE не найден
+/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+Дочерний процесс завершился со статусом: 0
+
+информация о расположении: +-используя getenv()
+                           *-сканируя массив параметров среды
+                           &-сканируя массив параметров, указанный в environ
+                           q-окончить
+*
+
+Дочерний процесс child_1 стартовал
+Идентификатор родительского процесса: 3539
+Идентификатор дочернего процесса: 3543
+
+/bin/zsh
+/home/nina
+Параметр HOSTNAME не найден
+nina
+ru_RU.UTF-8
+xterm-256color
+nina
+Параметр LC_COLLATE не найден
+/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+Дочерний процесс завершился со статусом: 0
+
+информация о расположении: +-используя getenv()
+                           *-сканируя массив параметров среды
+                           &-сканируя массив параметров, указанный в environ
+                           q-окончить
+&
+
+Дочерний процесс child_2 стартовал
+Идентификатор родительского процесса: 3539
+Идентификатор дочернего процесса: 3545
+
+/bin/zsh
+/home/nina
+Параметр HOSTNAME не найден
+nina
+ru_RU.UTF-8
+xterm-256color
+nina
+Параметр LC_COLLATE не найден
+/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+Дочерний процесс завершился со статусом: 0
+
+информация о расположении: +-используя getenv()
+                           *-сканируя массив параметров среды
+                           &-сканируя массив параметров, указанный в environ
+                           q-окончить
+w
+Неверный параметр
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab02 255$ ./parent params.txt
+
+Родительский процесс стартовал...
+COLORFGBG=15;0
+COLORTERM=truecolor
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+DESKTOP_SESSION=plasma
+DISPLAY=:0
+GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/nina/.gtkrc-2.0:/home/nina/.config/gtkrc-2.0
+GTK_MODULES=canberra-gtk-module
+GTK_RC_FILES=/etc/gtk/gtkrc:/home/nina/.gtkrc:/home/nina/.config/gtkrc
+HOME=/home/nina
+INVOCATION_ID=a8a5056d7f994ac0b1fa9ace624fab5f
+JOURNAL_STREAM=8:3729
+KDE_APPLICATIONS_AS_SCOPE=1
+KDE_FULL_SESSION=true
+KDE_SESSION_UID=1000
+KDE_SESSION_VERSION=5
+KONSOLE_DBUS_SERVICE=:1.87
+KONSOLE_DBUS_SESSION=/Sessions/1
+KONSOLE_DBUS_WINDOW=/Windows/1
+KONSOLE_VERSION=220803
+LANG=ru_RU.UTF-8
+LANGUAGE=
+LC_ADDRESS=ru_RU.UTF-8
+LC_IDENTIFICATION=ru_RU.UTF-8
+LC_MEASUREMENT=ru_RU.UTF-8
+LC_MONETARY=ru_RU.UTF-8
+LC_NAME=ru_RU.UTF-8
+LC_NUMERIC=ru_RU.UTF-8
+LC_PAPER=ru_RU.UTF-8
+LC_TELEPHONE=ru_RU.UTF-8
+LC_TIME=ru_RU.UTF-8
+LOGNAME=nina
+MAIL=/var/spool/mail/nina
+MANAGERPID=567
+MOTD_SHOWN=pam
+OLDPWD=/home/nina
+PAM_KWALLET5_LOGIN=/run/user/1000/kwallet5.socket
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+PROFILEHOME=
+PWD=/home/nina/Документы/OSSP/Labs/Альхимович/Lab02
+QT_AUTO_SCREEN_SCALE_FACTOR=0
+QT_SCREEN_SCALE_FACTORS=None-1=1.5;
+SESSION_MANAGER=local/Nina-Macbook-Air:@/tmp/.ICE-unix/674,unix/Nina-Macbook-Air:/tmp/.ICE-unix/674
+SHELL=/bin/zsh
+SHELL_SESSION_ID=a5653472c7294567a884d6d537418c5b
+SHLVL=1
+SYSTEMD_EXEC_PID=760
+TERM=xterm-256color
+USER=nina
+WINDOWID=106954763
+XAUTHORITY=/home/nina/.Xauthority
+XCURSOR_SIZE=24
+XCURSOR_THEME=breeze_cursors
+XDG_CONFIG_DIRS=/home/nina/.config/kdedefaults:/etc/xdg
+XDG_CURRENT_DESKTOP=KDE
+XDG_RUNTIME_DIR=/run/user/1000
+XDG_SEAT=seat0
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+XDG_SESSION_CLASS=user
+XDG_SESSION_DESKTOP=KDE
+XDG_SESSION_ID=2
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session1
+XDG_SESSION_TYPE=x11
+XDG_VTNR=1
+_=/home/nina/Ѓ�оку�менту�/OSSP/Labs/Ѓ�лу�у�имовиу�/Lab02/./parent
+
+информация о расположении: +-используя getenv()
+                           *-сканируя массив параметров среды
+                           &-сканируя массив параметров, указанный в environ
+                           q-окончить
+q
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab02 -$ 

@@ -1,0 +1,65 @@
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab01 -$ ./dirwalk /home/nina/Документы/OSSP -f
+
+file /home/nina/Документы/OSSP/Lectures/LK01-Введение.pdf
+file /home/nina/Документы/OSSP/Lectures/LK00-Установочная лекция.pdf
+file /home/nina/Документы/OSSP/Lectures/LK04-Файловая система.pdf
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/oslw1.o
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/dirwalk
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/makefile
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/oslw1.c
+file /home/nina/Документы/OSSP/Labs/Альхимович Н.Г. lab01.tar.gz
+
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab01 -$ ./dirwalk -fd  /home/nina/Документы/OSSP
+
+directory /home/nina/Документы/OSSP/Lectures
+file /home/nina/Документы/OSSP/Lectures/LK01-Введение.pdf
+file /home/nina/Документы/OSSP/Lectures/LK00-Установочная лекция.pdf
+file /home/nina/Документы/OSSP/Lectures/LK04-Файловая система.pdf
+directory /home/nina/Документы/OSSP/Labs
+directory /home/nina/Документы/OSSP/Labs/Альхимович
+directory /home/nina/Документы/OSSP/Labs/Альхимович/Lab01
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/oslw1.o
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/dirwalk
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/makefile
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/oslw1.c
+file /home/nina/Документы/OSSP/Labs/Альхимович Н.Г. lab01.tar.gz
+
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab01 -$ ./dirwalk -l /home/nina/Документы/OSSP -f
+
+file /home/nina/Документы/OSSP/Lectures/LK01-Введение.pdf
+file /home/nina/Документы/OSSP/Lectures/LK00-Установочная лекция.pdf
+file /home/nina/Документы/OSSP/Lectures/LK04-Файловая система.pdf
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/oslw1.o
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/dirwalk
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/makefile
+link /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/lk01.pdf
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/oslw1.c
+file /home/nina/Документы/OSSP/Labs/Альхимович Н.Г. lab01.tar.gz
+
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab01 -$ ./dirwalk -l
+
+link ./lk01.pdf
+
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab01 255$ ./dirwalk /home/nina/Документы/OSSP 
+
+directory /home/nina/Документы/OSSP/Lectures
+file /home/nina/Документы/OSSP/Lectures/LK01-Введение.pdf
+file /home/nina/Документы/OSSP/Lectures/LK00-Установочная лекция.pdf
+file /home/nina/Документы/OSSP/Lectures/LK04-Файловая система.pdf
+directory /home/nina/Документы/OSSP/Labs
+directory /home/nina/Документы/OSSP/Labs/Альхимович
+directory /home/nina/Документы/OSSP/Labs/Альхимович/Lab01
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/oslw1.o
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/dirwalk
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/makefile
+link /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/lk01.pdf
+file /home/nina/Документы/OSSP/Labs/Альхимович/Lab01/oslw1.c
+file /home/nina/Документы/OSSP/Labs/Альхимович Н.Г. lab01.tar.gz
+
+nina@Nina-Macbook-Air:~/Документы/OSSP/Labs/Альхимович/Lab01 -$ ./dirwalk
+
+file ./oslw1.o
+file ./dirwalk
+file ./makefile
+link ./lk01.pdf
+file ./oslw1.c
