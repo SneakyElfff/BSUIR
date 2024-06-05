@@ -17,6 +17,16 @@
 [Физика](https://github.com/SneakyElfff/BSUIR/tree/main/II%20semester/Физика) - Григорьев А. А.; (экзамен)<br>
 [УПОзн (Учебная практика (ознакомительная))](https://github.com/SneakyElfff/BSUIR/tree/main/II%20semester/practice) - Луцик Ю.А.; (дифф. зачет)<br>
 
+## III semester
+[МССвРЭ (Метрология, стандартизация и сертификация (в радиоэлектронике))](https://github.com/SneakyElfff/BSUIR/tree/main/III%20semester/МССвРЭ) - Минченок О. И., Руховец О.В.; (зачет)<br>
+[ПнаЯА (Программиование на языке ассемблера)](https://github.com/SneakyElfff/BSUIR/tree/main/III%20semester/ПнаЯА) - Лукьянова И. В.; (зачет)<br>
+[ЭП (Электронные приборы)](https://github.com/SneakyElfff/BSUIR/tree/main/III%20semester/ЭП) - Сацук С. М.; (зачет)<br>
+[БЖЧ (Безопасность жизнедеятельности человека)](https://github.com/SneakyElfff/BSUIR/tree/main/III%20semester/БЖЧ) - Телеш И. А.; (экзамен)<br>
+[ПнаЯВУ (Программирование на языках высокого уровня)](https://github.com/SneakyElfff/BSUIR/tree/main/III%20semester/ПнаЯВУ%20(С%2B%2B)) - Ковальчук А. М., Басак Д. В.; (экзамен)<br>
+[СММиФ (Специальные математические методы и функции)](https://github.com/SneakyElfff/BSUIR/tree/main/III%20semester/СММиФ) - Романчук Т. А.; (экзамен)<br>
+[ТВиМС (Теория вероятностей и математическая статистика)](https://github.com/SneakyElfff/BSUIR/tree/main/III%20semester/ТВиМС) - Матвеенко В. В.; (экзамен)<br>
+[Философ (Философия)](https://github.com/SneakyElfff/BSUIR/tree/main/III%20semester/Философия) - Миськевич В. И.; (экзамен)<br>
+
 ## VI semester
 [ССПОиРС (Сетевое системное программное обеспечение и распределенные системы)](https://github.com/SneakyElfff/NSSaDS) - Смирнов Ю.В., Жалейко Д.А.; (зачет)<br>
 [БД (Базы данных)](https://github.com/SneakyElfff/DB) - Поденок Л.П., Игнатович А.О.; (зачет)<br>
