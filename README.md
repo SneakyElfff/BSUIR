@@ -57,3 +57,6 @@ P.S. Все авторские права на предоставленные у
 [ОБиПвСИТ (Основы бизнеса и права в сфере инфокоммуникационных технологий)](https://github.com/SneakyElfff/BSUIR/tree/main/VI%20semester/ОБиПвСИТ) - Цыганков В.Д.; (экзамен)<br>
 [СА (Системный анализ)](https://github.com/SneakyElfff/BSUIR/tree/main/VI%20semester/СА) - Никульшин Б.В., Селезнёв А.И.; (экзамен)<br>
 [СиФОВМ (Структурная и функциональная организация вычислительных машин)](https://github.com/SneakyElfff/BSUIR/tree/main/VI%20semester/СиФОВМ) - Воронов А.А., Стракович А.И.; (экзамен)<br>
+
+## VII semester
+[ХиУД (Хранение и управление данными)](https://github.com/SneakyElfff/BSUIR/tree/main/VII%20semester/ХиУД) - Фролов, Куприянова Д.В.; (зачет)<br>
