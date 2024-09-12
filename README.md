@@ -60,3 +60,5 @@ P.S. Все авторские права на предоставленные у
 
 ## VII semester
 [ХиУД (Хранение и управление данными)](https://github.com/SneakyElfff/BSUIR/tree/main/VII%20semester/ХиУД) - Фролов, Куприянова Д.В.; (зачет)<br>
+[ОбКС (Оборудование компьютерных сетей)](https://github.com/SneakyElfff/BSUIR/tree/main/VII%20semester/ОбКС) - Глецевич И.И.; (зачет)<br>
+[МПСиС (Микропроцессорные средства и системы)](https://github.com/SneakyElfff/BSUIR/tree/main/VII%20semester/МПСиС) - Селезнёв И.Л., Хатеневич А.А.; (экзамен)<br>
