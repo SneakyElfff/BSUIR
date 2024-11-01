@@ -16,19 +16,18 @@ int main(void) {
     WDTCTL = WDTPW | WDTHOLD;  // Остановить сторожевой таймер
 
     P1DIR |= BIT0;  // LED1 (P1.0) как вход
+    P8DIR |= BIT2;  // LED3 (P8.2) как вход
     P1DIR |= BIT1;  // LED4 (P1.1) как вход
     P1DIR |= BIT2;  // LED5 (P1.2) как вход
     P1DIR |= BIT3;  // LED6 (P1.3) как вход
     P1DIR |= BIT4;  // LED7 (P1.4) как вход
     P1DIR |= BIT5;  // LED8 (P1.5) как вход
 
-    P8DIR |= BIT2; // LED3 (P8.2) как выход
-
     //P1OUT &= BIT1;
     P1OUT &= ~BIT3;  // светодиод LED6 выключен
 
-    P7DIR |= BIT7;  // порт MCLK
-    P7SEL |= BIT7;  // вывод как перифирийный
+    P7DIR |= BIT7;  // порт MCLK (P7.7)
+    P7SEL |= BIT7;  // вывод на периферию
 
     P1REN |= BIT7;  // включить подтяжку кнопки S1 (P1.7)
     P1OUT |= BIT7;  // подтянуть кнопку S1 к Vcc
@@ -54,13 +53,16 @@ int main(void) {
 
     __bis_SR_register(GIE);  // глобальное разрешение прерываний
 
-    UCSCTL3 = SELREF__REFOCLK;
-    UCSCTL3 |= FLLREFDIV__1;
-    UCSCTL4 = SELM__DCOCLK;
-    UCSCTL1 = DCORSEL_2;
+    UCSCTL3 = SELREF__REFOCLK;  // источник для FLL
+    UCSCTL3 |= FLLREFDIV__1;  // делитель частоты FLL = 1
 
-    UCSCTL2 = FLLN6 + FLLN4 + FLLN0;
-    UCSCTL2 |= FLLD__1;
+    UCSCTL4 = SELM__DCOCLK;  // выбор источника для MCLK
+
+    UCSCTL1 = DCORSEL_2;  // выбор диапазона частот DCO (0,32 МГц — 7,38 МГц)
+
+    // Fdcoclk = FLLrefclk * (FLLN + 1) = 2,68 МГц
+    UCSCTL2 = FLLN6 + FLLN4 + FLLN0; // 0b0000000101000001 = 81
+    UCSCTL2 |= FLLD__1;  // делитель FLL
 
     while(1) {
         counter++;
@@ -75,8 +77,10 @@ int main(void) {
 }
 
 void startTA2() {
-    TA2CTL = TASSEL_1 + MC_1 + ID_1 + TACLR;
-    TA2CCR0 = timerSpeed;
+    // выбор источника, режим, делитель на входе, очистка счетчика
+    TA2CTL = TASSEL_1 + MC_1 + ID_1 + TACLR;  // MCLK, up
+
+    TA2CCR0 = timerSpeed;  // сравнить с
     TA2CCTL0 |= CCIE;
 }
 
@@ -103,33 +107,41 @@ __interrupt void P2INT() {
 }
 
 void decreaseSupplyLevel(int level) {
-    PMMCTL0_H = PMMPW_H;
-    SVSMLCTL = SVSLE | SVSLRVL0 * level | SVMLE | SVSMLRRL0 * level;
+    PMMCTL0_H = PMMPW_H;  // разблокировать регистр для записи
 
-    while (!(PMMIFG & SVSMLDLYIFG))
+    // поля аналогичны SVSMHCTL, но по выходу
+    SVSMLCTL = SVSLE | SVSLRVL0 * level | SVMLE | SVSMLRRL0 * level;  // управление SVS, SVM по выходу
+
+    while (!(PMMIFG & SVSMLDLYIFG))  // достигнута задержка SVS, SVM
     ;
-    SVSMLCTL = SVSLE | SVSLRVL0 * level;
+
+    SVSMLCTL = SVSLE | SVSLRVL0 * level;  // для проверки уровня Vcore
 
     PMMCTL0_L = PMMCOREV0 * level;
+
     SVSMLCTL = SVSLE | SVSLRVL0 * level | SVMLE | SVSMLRRL0 * level;
 
     while (!(PMMIFG & SVSMLDLYIFG))
     ;
+
     PMMCTL0_H = 0;
 }
 
 void increaseSupplyLevel(int level) {
     PMMCTL0_H = PMMPW_H;
-    SVSMHCTL = SVSHE | SVSHRVL0 * level | SVMHE | SVSMHRRL0 * level;
+
+    // SVSHE - разрешить SVS, SVSHRVL0 - Uвх для сброса, SVMHE - разрешить SVM, SVSMHRRL0 - Uвх для отклика
+    SVSMHCTL = SVSHE | SVSHRVL0 * level | SVMHE | SVSMHRRL0 * level;  // изменить уровни SVM и SVS (Uвх > Vcore)
     SVSMLCTL = SVMLE | SVSMLRRL0 * level;
 
-    while (!(PMMIFG & SVSMLDLYIFG))
+    while (!(PMMIFG & SVSMLDLYIFG))  // SVML стабилизировался
     ;
 
-    PMMIFG &= ~(SVMLVLRIFG + SVMLIFG);
+    PMMIFG &= ~(SVMLVLRIFG + SVMLIFG);  // SVMLVLRIFG - достигнут Uвх, SVMLIFG - Uывх
+
     PMMCTL0_L = PMMCOREV0 * level;
 
-    if ((PMMIFG & SVMLIFG))
+    if ((PMMIFG & SVMLIFG))  // ожидание установки Vcore
     while (!(PMMIFG & SVMLVLRIFG))
       ;
 
@@ -142,7 +154,7 @@ void changeFrequency() {
         supplyVoltageLevel = 1;
         increaseSupplyLevel(1);
 
-        UCSCTL5 |= DIVM__1;
+        UCSCTL5 |= DIVM__1; // делитель MCLK на 1
         UCSCTL5 &= ~DIVM__8;
         timerSpeed = 1000;
     }
@@ -158,16 +170,16 @@ void changeFrequency() {
 
 #pragma vector = TIMER2_A0_VECTOR
 __interrupt void TIMER222() {
-    int a = 90;
+    int temp = 0;
 
     P1IE = BIT7;  // включить прерывания для S1
 
-    if (button == 0) {
-        a = (P1IN & BIT7);
+    if (button == 0) {  // кнопка S1
+        temp = (P1IN & BIT7);
 
-        if (a == 0) {
-            P1OUT ^= BIT0;
-            P8OUT ^= BIT2;
+        if (temp == 0) {
+            P1OUT ^= BIT0;  // переключить LED1
+            P8OUT ^= BIT2;  // переключить LED3
 
             if (powerSaving == 0) {
                 powerSaving = 1;
@@ -182,14 +194,14 @@ __interrupt void TIMER222() {
             }
         }
 
-    P1IFG = 0;
+        P1IFG = 0;
     }
-    else if (button == 1) {
-        a = (P2IN & BIT2);
+    else if (button == 1) {  // кнопка S2
+        temp = (P2IN & BIT2);
 
-        if (a == 0) {
-            P1OUT ^= BIT1;
-            P1OUT ^= BIT2;
+        if (temp == 0) {
+            P1OUT ^= BIT1;  // переключить LED4
+            P1OUT ^= BIT2;  // переключить LED5
 
             changeFrequency();
         }
