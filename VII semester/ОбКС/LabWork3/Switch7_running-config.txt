@@ -19,7 +19,7 @@ spanning-tree mode pvst
 !
 interface FastEthernet0/1
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  switchport mode trunk
 !
 interface FastEthernet0/2
@@ -29,7 +29,7 @@ interface FastEthernet0/2
 !
 interface FastEthernet0/3
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,50,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  channel-group 5 mode active
  switchport mode trunk
  duplex full
@@ -37,7 +37,7 @@ interface FastEthernet0/3
 !
 interface FastEthernet0/4
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,50,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  channel-group 5 mode active
  switchport mode trunk
  duplex full
@@ -112,7 +112,7 @@ interface GigabitEthernet0/2
 !
 interface Port-channel 5
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,50,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  switchport mode trunk
 !
 interface Vlan1

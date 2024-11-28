@@ -42,26 +42,26 @@ spanning-tree vlan 10,20,30,50,100,999 priority 24576
 !
 interface Port-channel 2
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,100,999
+ switchport trunk allowed vlan 10,20,100,999
  switchport trunk encapsulation dot1q
  switchport mode trunk
 !
 interface Port-channel 3
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,50,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  switchport trunk encapsulation dot1q
  switchport mode trunk
 !
 interface Port-channel 4
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,50,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  switchport trunk encapsulation dot1q
  switchport mode trunk
 !
 interface FastEthernet0/1
  channel-group 2 mode active
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,100,999
+ switchport trunk allowed vlan 10,20,100,999
  switchport trunk encapsulation dot1q
  switchport mode trunk
  duplex full
@@ -70,7 +70,7 @@ interface FastEthernet0/1
 interface FastEthernet0/2
  channel-group 4 mode active
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,50,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  switchport trunk encapsulation dot1q
  switchport mode trunk
  duplex full
@@ -79,7 +79,7 @@ interface FastEthernet0/2
 interface FastEthernet0/3
  channel-group 3 mode active
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,50,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  switchport trunk encapsulation dot1q
  switchport mode trunk
  duplex full
@@ -88,7 +88,7 @@ interface FastEthernet0/3
 interface FastEthernet0/4
  channel-group 2 mode active
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,100,999
+ switchport trunk allowed vlan 10,20,100,999
  switchport trunk encapsulation dot1q
  switchport mode trunk
  duplex full
@@ -97,7 +97,7 @@ interface FastEthernet0/4
 interface FastEthernet0/5
  channel-group 3 mode active
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,50,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  switchport trunk encapsulation dot1q
  switchport mode trunk
  duplex full
@@ -106,7 +106,7 @@ interface FastEthernet0/5
 interface FastEthernet0/6
  channel-group 4 mode active
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,50,100,999
+ switchport trunk allowed vlan 10,20,50,100,999
  switchport trunk encapsulation dot1q
  switchport mode trunk
  duplex full

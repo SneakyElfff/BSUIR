@@ -19,7 +19,7 @@ spanning-tree mode pvst
 !
 interface FastEthernet0/1
  switchport trunk native vlan 999
- switchport trunk allowed vlan 10,20,30,100,999
+ switchport trunk allowed vlan 10,20,100,999
  switchport mode trunk
 !
 interface FastEthernet0/2
