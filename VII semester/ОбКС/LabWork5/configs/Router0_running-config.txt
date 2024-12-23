@@ -1,0 +1,100 @@
+!
+version 12.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+username ISPRouter password 0 bavjob-jyjvo4-tykByt
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.1.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial1/0
+ ip address 51.0.0.1 255.128.0.0
+ encapsulation ppp
+ ppp authentication chap
+!
+interface Serial1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial1/2
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial1/3
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 73.242.230.64 255.255.255.240 192.168.1.1 
+ip route 107.120.189.64 255.255.255.192 192.168.1.1 
+ip route 0.0.0.0 0.0.0.0 51.0.0.2 
+ip route 164.73.105.128 255.255.255.128 192.168.1.1 
+ip route 197.23.107.96 255.255.255.224 192.168.1.1 
+ip route 149.209.162.0 255.255.255.240 192.168.1.1 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
